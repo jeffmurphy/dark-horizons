@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @note.domain %>
+</p>
+
+<p>
+  <strong>Posted at:</strong>
+  <%= @note.posted_at %>
+</p>
+
+<p>
+  <strong>Notetype:</strong>
+  <%= @note.notetype %>
+</p>
+
+<%= link_to 'Edit', edit_note_path(@note) %> |
+<%= link_to 'Back', notes_path %>

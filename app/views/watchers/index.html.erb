@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Watchers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Apiurl</th>
+      <th>Apikey</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Domain</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @watchers.each do |watcher| %>
+      <tr>
+        <td><%= watcher.apiurl %></td>
+        <td><%= watcher.apikey %></td>
+        <td><%= watcher.username %></td>
+        <td><%= watcher.password %></td>
+        <td><%= watcher.domain %></td>
+        <td><%= link_to 'Show', watcher %></td>
+        <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>
+        <td><%= link_to 'Destroy', watcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Watcher', new_watcher_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  domain: MyString
+  okimg: MyString
+  nokimg: MyString
+
+two:
+  domain: MyString
+  okimg: MyString
+  nokimg: MyString

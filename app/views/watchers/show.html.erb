@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Apiurl:</strong>
+  <%= @watcher.apiurl %>
+</p>
+
+<p>
+  <strong>Apikey:</strong>
+  <%= @watcher.apikey %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @watcher.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @watcher.password %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @watcher.domain %>
+</p>
+
+<%= link_to 'Edit', edit_watcher_path(@watcher) %> |
+<%= link_to 'Back', watchers_path %>
