@@ -4,7 +4,14 @@ class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.all
+    puts "in index"
+    @dom = Domain.find_by domain: request.host
+    if @dom
+      puts "DOM #{@dom}"
+    else
+      @notice = "Unmonitored domain: #{request.host}"
+      puts "!DOM #{@notice}"
+    end
   end
 
   # GET /statuses/1

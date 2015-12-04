@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204175019) do
-
-  create_table "domains", force: :cascade do |t|
-    t.string   "domain"
-    t.string   "okimg"
-    t.string   "nokimg"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20151204203053) do
 
   create_table "notes", force: :cascade do |t|
     t.string   "domain"
@@ -52,6 +44,11 @@ ActiveRecord::Schema.define(version: 20151204175019) do
     t.string   "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "okimg"
+    t.string   "nokimg"
+    t.integer  "user_id"
   end
+
+  add_index "watchers", ["user_id"], name: "index_watchers_on_user_id"
 
 end
