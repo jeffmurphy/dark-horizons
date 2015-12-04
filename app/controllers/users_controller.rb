@@ -19,6 +19,9 @@ class UsersController < ApplicationController
 
   # GET /user/1/edit
   def edit
+    if @user == nil
+      redirect_to root_path
+    end
   end
 
   # POST /user
@@ -64,7 +67,11 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      begin
+        @user = User.find(params[:id])
+      rescue
+        @user = nil
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
