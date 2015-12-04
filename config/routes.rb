@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root :to => 'users#index'
+  resources :statuses
+  root :to => 'statuses#index'
   resources :user_sessions
   resources :users
 
