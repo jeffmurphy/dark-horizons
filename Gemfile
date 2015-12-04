@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'sorcery', '0.9.1'
+gem 'cronedit'
+gem 'httpclient'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

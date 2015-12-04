@@ -15,10 +15,17 @@ class WatchersController < ApplicationController
   # GET /watchers/new
   def new
     @watcher = Watcher.new
+    @watcher.user_id = current_user.id
   end
 
   # GET /watchers/1/edit
   def edit
+    @watcher = Watcher.find(:id)
+    if @watcher.user_id == current_user.id
+      1
+    else
+      redirect_to @watcher, notice: "Can not edit"
+    end
   end
 
   # POST /watchers

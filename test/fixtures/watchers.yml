@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  apiurl: MyString
-  apikey: MyString
-  username: MyString
-  password: MyString
-  domain: MyString
+  apiurl: https://api.prosurix.com/api/version
+  apikey: none
+  username: none
+  password: none
+  domain: status.prosurix.com
 
 two:
-  apiurl: MyString
-  apikey: MyString
-  username: MyString
-  password: MyString
-  domain: MyString
+  apiurl: http://whiteface.csirtgadgets.com/api
+  apikey: none
+  username: none
+  password: none
+  domain: status.whiteface.csirtgadgets.com
