@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Type:</strong>
+  <%= @watcher.post && @watcher.post.length ? "POST" :  "GET" %>
+</p>
+
+<p>
   <strong>Apikey:</strong>
   <%= @watcher.apikey %>
 </p>
@@ -23,6 +28,11 @@
 <p>
   <strong>Domain:</strong>
   <%= @watcher.domain %>
+</p>
+
+<p>
+	<strong>POST Data:</strong>
+	<%= @watcher.post %>
 </p>
 
 <%= link_to 'Edit', edit_watcher_path(@watcher) %> |

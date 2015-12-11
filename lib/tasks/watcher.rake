@@ -22,7 +22,7 @@ task :watcher => :environment do
     # RRA: one day of 5 min intervals
     #      7 days of 30 min ints
     #      31 days of 1 hr ints
-    RRD::Wrapper.create f, "--step", "300", "DS:#{dsname}:#{typ}:600:#{min}:#{max}", "RRA:AVERAGE:0.5:300:17280",
+    RRD::Wrapper.create f, "--step", "300", "DS:#{dsname}:#{typ}:600:#{min}:#{max}", "RRA:AVERAGE:0.5:300:17280", +
 	"RRA:AVERAGE:0.5:1800:336", "RRA:AVERAGE:0.5:3600:744"
   end
 
@@ -32,6 +32,16 @@ task :watcher => :environment do
     response.code
   end
 
+  def dopost(http, uri, data)
+    puts "\tPOSTing: #{data}"
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request.body = data
+    request.content_type = 'application/json'
+    response = http.request(request)
+    puts "\tPOST-reply: #{response.body}"
+    response.code
+  end
+  
   def dohead(http, uri)
     request = Net::HTTP::Head.new(uri.request_uri)
     response = http.request(request)
@@ -63,7 +73,11 @@ task :watcher => :environment do
         ts = Time.now()
         webrc = dohead(http, uri)
         twebserver = Time.now()
-        apirc = dorequest(http, uri)
+        if w.post
+          apirc = dopost(http, uri, w.post)
+        else
+          apirc = dorequest(http, uri)
+        end
         tapi = Time.now()
         puts "#{Time.now} #{webrc} #{apirc} #{w.apiurl} #{twebserver - ts} #{tapi - twebserver}"
       end

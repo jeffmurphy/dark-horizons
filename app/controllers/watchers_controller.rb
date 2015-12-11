@@ -1,6 +1,6 @@
 class WatchersController < ApplicationController
   before_action :set_watcher, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /watchers
   # GET /watchers.json
   def index
@@ -20,12 +20,7 @@ class WatchersController < ApplicationController
 
   # GET /watchers/1/edit
   def edit
-    @watcher = Watcher.find(:id)
-    if @watcher.user_id == current_user.id
-      1
-    else
-      redirect_to @watcher, notice: "Can not edit"
-    end
+    @watcher = Watcher.find(params[:id])
   end
 
   # POST /watchers
@@ -72,10 +67,13 @@ class WatchersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_watcher
       @watcher = Watcher.find(params[:id])
+      if @watcher.user_id != current_user.id
+        redirect_to :action => 'index', notice: "Not on my watch."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def watcher_params
-      params.require(:watcher).permit(:apiurl, :apikey, :username, :password, :domain)
+      params.require(:watcher).permit(:apiurl, :apikey, :username, :password, :domain, :post)
     end
 end

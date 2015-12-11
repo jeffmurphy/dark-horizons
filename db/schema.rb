@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204203053) do
+ActiveRecord::Schema.define(version: 20151211181143) do
 
   create_table "notes", force: :cascade do |t|
     t.string   "domain"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20151204203053) do
     t.string   "okimg"
     t.string   "nokimg"
     t.integer  "user_id"
+    t.text     "post"
   end
 
   add_index "watchers", ["user_id"], name: "index_watchers_on_user_id"

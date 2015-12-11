@@ -6,10 +6,10 @@
   <thead>
     <tr>
       <th>Apiurl</th>
-      <th>Apikey</th>
+      <th>Type</th>
       <th>Username</th>
-      <th>Password</th>
       <th>Domain</th>
+      <th>Owner</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,10 +18,12 @@
     <% @watchers.each do |watcher| %>
       <tr>
         <td><%= watcher.apiurl %></td>
-        <td><%= watcher.apikey %></td>
+        <td><%= watcher.post && watcher.post.length ? "POST" :  "GET" %></td>
         <td><%= watcher.username %></td>
-        <td><%= watcher.password %></td>
         <td><%= watcher.domain %></td>
+
+                <td><%= watcher.user_id %></td>
+
         <td><%= link_to 'Show', watcher %></td>
         <td><%= link_to 'Edit', edit_watcher_path(watcher) %></td>
         <td><%= link_to 'Destroy', watcher, method: :delete, data: { confirm: 'Are you sure?' } %></td>
