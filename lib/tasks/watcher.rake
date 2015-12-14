@@ -9,12 +9,18 @@
 #
 # http://forums.cacti.net/about25502.html
 # http://www.tummy.com/blogs/2010/05/15/getting-95-percentile-numbers-out-of-rrdtool/
+# http://www.rubyinside.com/nethttp-cheat-sheet-2940.html
+# http://www.stuartellis.eu/articles/rake/#writing-rake-files
+# http://www.gethourglass.com/blog/ruby-check-if-file-exists.html
 
 require "net/http"
 require "uri"
 require "rrd"
 
-task :watcher => :environment do
+task :default => ["watcher"]
+
+desc "Watcher Init - run once on install to create RRD files"
+task :watcher_init => :environment do
   def create(f, dsname, typ, min, max)
     # create("available", "GAUGE", 0, 1)
     # create("exception", "GAUGE", 0, 1)
@@ -22,10 +28,15 @@ task :watcher => :environment do
     # RRA: one day of 5 min intervals
     #      7 days of 30 min ints
     #      31 days of 1 hr ints
-    RRD::Wrapper.create f, "--step", "300", "DS:#{dsname}:#{typ}:600:#{min}:#{max}", "RRA:AVERAGE:0.5:300:17280", +
-	"RRA:AVERAGE:0.5:1800:336", "RRA:AVERAGE:0.5:3600:744"
+    RRD::Wrapper.create f, "--step", "300", "DS:#{dsname}:#{typ}:600:#{min}:#{max}", "RRA:AVERAGE:0.5:300:17280", "RRA:AVERAGE:0.5:1800:336", "RRA:AVERAGE:0.5:3600:744"
   end
+  
+  create("foo", "bar", "GAUGE", 0, 1)
+end
 
+
+desc "Watcher Task - run from cron every 5 minutes"
+task :watcher => :environment do
   def dorequest(http, uri)
     request = Net::HTTP::Get.new(uri.request_uri)
     response = http.request(request)
